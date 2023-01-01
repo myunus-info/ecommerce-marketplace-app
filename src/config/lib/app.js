@@ -1,6 +1,7 @@
 exports.start = () => {
   const db = require('./mongoose');
   const app = require('./express')();
+
   db.then(() => {
     console.log('Database connected successfully!');
     app.listen(app.get('port'), () => {
