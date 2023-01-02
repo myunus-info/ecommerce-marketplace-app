@@ -18,7 +18,7 @@ module.exports = () => {
     new Strategy(
       { secretOrKey: nodeCache.getValue('JWT_SECRET'), jwtFromRequest: cookieExtractor },
       async (payload, done) => {
-        const user = await User.findOne({ where: { id: payload.id } });
+        const user = await User.findById(payload.id);
         if (!user) {
           return done(null, false);
         }

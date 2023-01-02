@@ -5,7 +5,6 @@ const User = require('./user.model');
 
 const register = asyncHandler(async (req, res, next) => {
   const { username, password, role } = req.body;
-
   const user = await User.findOne({ username });
   if (user) {
     return next(new AppError(400, 'User already exists!'));

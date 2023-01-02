@@ -7,7 +7,6 @@ const generateAccessToken = user => {
     expiresIn: nodeCache.getValue('JWT_EXPIRES_IN'),
     issuer: user._id.toString(),
   });
-
   return accessToken;
 };
 
