@@ -20,4 +20,11 @@ module.exports = app => {
     authorizePermissions(Permissions.SELLER_PERMISSION),
     catalogController.createCatalog
   );
+
+  app.get(
+    '/api/seller/orders',
+    AuthStrategy,
+    authorizePermissions(Permissions.SELLER_PERMISSION),
+    catalogController.getOrders
+  );
 };

@@ -5,6 +5,16 @@ const User = require(path.join(process.cwd(), 'src/modules/user/user.model'));
 const Catalog = require(path.join(process.cwd(), 'src/modules/catalog/catalog.model'));
 const Order = require('./order.model');
 
+const createOrder = asyncHandler(async (req, res, next) => {
+  const seller = req.params.seller_id;
+  const buyer = req.user._id;
+  await Order.create({ seller, buyer });
+  res.status(201).json({
+    status: 'success',
+    message: 'Order created successfully',
+  });
+});
+
 const getSellers = asyncHandler(async (req, res, next) => {
   const sellers = await User.find({ role: 'seller' });
   if (sellers.length < 1) {
@@ -29,12 +39,8 @@ const getSellersProductsCatalog = asyncHandler(async (req, res, next) => {
   });
 });
 
-const createOrder = asyncHandler(async (req, res, next) => {
-  res.send('Create order route');
-});
-
 module.exports = {
-  getSellers,
   createOrder,
+  getSellers,
   getSellersProductsCatalog,
 };
