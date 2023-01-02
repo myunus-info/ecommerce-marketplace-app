@@ -10,11 +10,11 @@ const generateAccessToken = user => {
   return accessToken;
 };
 
-const generateTokenUser = user => {
+const generateLoggedInUser = user => {
   return { name: user.username, userId: user._id, role: user.role };
 };
 
 module.exports = {
   generateAccessToken,
-  generateTokenUser,
+  generateLoggedInUser,
 };

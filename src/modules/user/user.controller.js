@@ -1,5 +1,5 @@
 const path = require('path');
-const { generateAccessToken, generateTokenUser } = require('./user.service');
+const { generateAccessToken, generateLoggedInUser } = require('./user.service');
 const { asyncHandler, AppError } = require(path.join(process.cwd(), 'src/modules/core/errors'));
 const User = require('./user.model');
 
@@ -38,7 +38,7 @@ const login = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     status: 'success',
     message: 'User logged in successfully!',
-    user: generateTokenUser(user),
+    user: generateLoggedInUser(user),
   });
 });
 
